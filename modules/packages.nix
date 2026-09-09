@@ -18,6 +18,7 @@
   ];
 
   programs.fish.enable = true;
+  programs.dconf.enable = true;
   programs.mtr.enable = true;
    programs.gnupg.agent = {
      enable = true;
@@ -27,21 +28,21 @@
     enable = true;
     xwayland.enable = true;
   };
-  programs.xwayland.enable = true;
-  programs.xfconf.enable = true;
+
   programs.thunar = {
     enable = true;
     plugins = with pkgs; [ thunar-volman ];
   };
-  services.gvfs.enable = true;
-  programs.firefox.enable = true;
-  services.upower.enable = true;
-  programs.dconf.enable = true;
-  services.tumbler.enable = true;
-  services.gnome.gnome-keyring.enable = true;
 
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  services.openssh.settings.PasswordAuthentication = true;
-  services.openssh.settings.PermitRootLogin = "no";
+  programs.xfconf.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+    ];
+  };
+
+  programs.xwayland.enable = true;  
 }  

@@ -4,7 +4,7 @@
   "position": "top",
   "spacing": 0,
   "height": 30,
-  "modules-left": ["custom/logo", "custom/space", "custom/update", "custom/space", "hyprland/window"],
+  "modules-left": ["custom/logo", "custom/space", "network", "custom/space", "hyprland/window"],
   "modules-center": ["hyprland/workspaces"],
   "modules-right": [
     "mpris",
@@ -34,17 +34,16 @@
     } 
   },
   "custom/logo": {
-    "format": "<span font='Inter'> </span>",
+    "format": " ",
     "on-click": "fuzzel",
     "tooltip-format": "App Menu"
   },
-  "custom/update": {
-    "format": "  None",
-    //"exec": "system-update module",
-    "on-click": "footclient -e system-update",
-    "tooltip-format": "Update available",
-    "signal": 7,
-    "interval": 21600
+  "network": {
+    "format": "  Done",
+    "format-disconnected": "  None",
+    "format-disabled": "  None",
+    "tooltip-format": "{essid}",
+    "interval": 3
   },
 
   "custom/space": {
@@ -54,8 +53,12 @@
 
   "hyprland/window": {
     "format": "  {}",
+    "fallback": "  No active window",
     "max-length": 30,
-    "separate-outputs": true
+    "separate-outputs": true,
+    "rewrite": {
+        "^\\s*$": "  No active window"
+    }
   },
 
   "clock": {
@@ -71,7 +74,7 @@
       "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
       "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
-    "format-full": "󰂅",
+    "format-full": "{icon}  {capacity}%",
     "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
     "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
     "interval": 5,
@@ -110,14 +113,13 @@
   },
  
   "mpris": {
-    "player": "mozart",
     "interval": 1,
     "dynamic-len": 30,
     "dynamic-order": [
       "title"
     ],
-    "format": "  {dynamic}  ",
-    "format-paused": "  {dynamic}  ",
+    "format-paused": "  {dynamic}  ",
+    "format": "  {dynamic}  ",
     "ignored-players": []
-  },
+  }, 
 }

@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+
+DEF_VALUE=1
+
+usage() {
+  local script=${0##*/}
+
+  cat <<-EOF
+		USAGE: $script {up|down|toggle|mic} [value]
+
+		Adjust audio volume, toggle mute, toggle microphone mute,
+		and send a notification.
+
+		OPTIONS:
+		  up       [value]    Increase volume by [value] (default: $DEF_VALUE)
+		  down     [value]    Decrease volume by [value] (default: $DEF_VALUE)
+		  toggle              Toggle audio mute
+		  mic                 Toggle microphone mute
+
+		EXAMPLES:
+		  Increase volume:
+		    $ $script up
+
+		  Decrease volume by 5:
+		    $ $script down 5
+
+		  Toggle audio mute:
+		    $ $script toggle
+
+		  Toggle microphone mute:
+		    $ $script mic
+	EOF
+}
+
+main() {
+  local action=$1
+  local value=${2:-$DEF_VALUE}
+  local device='@DEFAULT_AUDIO_SINK@'
+  local title='Volume'
+  local notification_id='volume'
+
+  if [[ $action == "up" || $action == "down" ]]; then
+    if ! [[ $value =~ ^[1-9][0-9]*$ ]]; then
+      usage >&2
+      return 1
+    fi
+  fi
+
+  case $action in
+  up | down)
+    local sign
+
+    case $action in
+    up) sign='+' ;;
+    down) sign='-' ;;
+    esac
+
+    wpctl set-volume "$device" "${value}%${sign}"
+    ;;
+
+  toggle)
+    wpctl set-mute "$device" toggle
+    ;;
+
+  mic)
+    device='@DEFAULT_AUDIO_SOURCE@'
+    title='Microphone'
+    notification_id='microphone'
+
+    wpctl set-mute "$device" toggle
+    ;;
+
+  *)
+    usage >&2
+    return 1
+    ;;
+  esac
+
+  local volume
+  volume=$(wpctl get-volume "$device" |
+    awk '{printf "%d", $2 * 100}')
+
+  local muted
+  local icon
+
+  if wpctl get-volume "$device" | grep -q '\[MUTED\]'; then
+    muted=' [Muted]'
+
+    if [[ $device == '@DEFAULT_AUDIO_SOURCE@' ]]; then
+      icon='microphone-sensitivity-muted'
+    else
+      icon='audio-volume-muted'
+    fi
+  else
+    muted=''
+
+    if [[ $device == '@DEFAULT_AUDIO_SOURCE@' ]]; then
+      icon='microphone-sensitivity-high'
+    else
+      icon='audio-volume-high'
+    fi
+  fi
+
+  notify-send "${title}: ${volume}%${muted}" \
+    -h int:value:"$volume" \
+    -i "$icon" \
+    -h string:x-canonical-private-synchronous:"$notification_id"
+}
+
+main "$@"

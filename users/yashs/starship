@@ -17,6 +17,7 @@ $fill $cmd_duration $time\
     $cpp\
     $golang\
     $zig\
+    $nix_shell\
     $rust\
     $java\
     $lua\
@@ -110,8 +111,6 @@ format = "[󱑈 $time]($style) "
 time_format = "%H:%M"
 style = "bold fg:time"
 
-
-
 [cmd_duration]
 disabled = false
 format = "took [ $duration]($style) "
@@ -125,7 +124,7 @@ symbol = " "
 
 [git_status]
 format = '[ $all_status$ahead_behind ]($style)'
-style = "fg:text_color bg:git"
+style = "bold fg:git"
 disabled = true
 
 [docker_context]
@@ -150,7 +149,7 @@ symbol = " "
 
 [nodejs]
 format = "[ $symbol$version ]($style)"
-style = "bg:node fg:text_light"
+style = "bold fg:node"
 symbol = " "
 version_format = "${raw}"
 disabled=false
@@ -160,67 +159,67 @@ disabled=false
 format = '[ ${symbol}${pyenv_prefix}(${version})( \($virtualenv\)) ]($style)'
 symbol = " "
 version_format = "${raw}"
-style = "bg:python fg:text_light"
+style = "bold fg:python"
 
 [conda]
 format = "[ $symbol$environment ]($style)"
-style = "bg:conda fg:text_light"
+style = "bold fg:conda"
 ignore_base = false
 disabled = false
 symbol = " "
 
 [java]
 format = "[ $symbol$version ]($style)"
-style = "bg:java fg:text_light"
+style = "bold fg:java"
 version_format = "${raw}"
 symbol = " "
 disabled = false
 
 [c]
 format = "[ $symbol($version(-$name)) ]($style)"
-style = "bg:clang fg:text_light"
+style = "bold fg:clang"
 symbol = " "
 version_format = "${raw}"
 disabled=false
 
 [cpp]
 format = "[ $symbol($version(-$name)) ]($style)"
-style = "bg:cpp fg:text_light"
+style = "bold fg:cpp"
 symbol = " "
 version_format = "${raw}"
 disabled=false
 
 [rust]
 format ="[ $symbol$version ]($style)"
-style = "bg:rust fg:text_light"
+style = "bold fg:rust"
 symbol = " "
 version_format = "${raw}"
 disabled=false
 
 [golang]
 format ="[ $symbol$version ]($style)"
-style = "bg:golang fg:text_light"
+style = "bold fg:golang"
 symbol = " "
 version_format = "${raw}"
 disabled=false
 
 [zig]
 format ="[ $symbol$version ]($style)"
-style = "bg:zig fg:text_light"
+style = "bold fg:zig"
 symbol = " "
 version_format = "${raw}"
 disabled=false
 
 [lua]
 format ="[ $symbol$version ]($style)"
-style = "bg:lua fg:text_light"
+style = "bold fg:lua"
 symbol = "󰢱 "
 version_format = "${raw}"
 disabled=false
 
 [haskell]
 format ="[ $symbol$version ]($style)"
-style = "bg:haskell fg:text_light"
+style = "bg:bold fg:haskell"
 symbol = " "
 version_format = "${raw}"
 disabled=false

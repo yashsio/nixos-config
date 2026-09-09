@@ -38,13 +38,13 @@
     # NixOS host.
     nixosConfigurations.host = mkSystem "host" {
       system = "x86_64-linux";
-      user   = "amrahs";
+      user   = "yashs";
     };
 
     # NixOS VM.
     nixosConfigurations.vm = mkSystem "vm" {
       system = "x86_64-linux";
-      user   = "amrahs";
+      user   = "yashs";
     };
   };
 }

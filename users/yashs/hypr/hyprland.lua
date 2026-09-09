@@ -8,5 +8,4 @@ require("custom.monitors")
 require("custom.rules")
 require("custom.variables")
 
--- For Noctalia Color templates
-require("noctalia").apply_theme()
+require("theme").apply_theme()

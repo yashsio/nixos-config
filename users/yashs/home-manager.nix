@@ -41,7 +41,9 @@ in {
 
   # Packages
   home.packages = with pkgs; [
+    nur.repos.thestaccato.mozart
     papirus-icon-theme
+    adwaita-icon-theme
     foot
     tmux
     imagemagick
@@ -64,23 +66,31 @@ in {
     ripgrep
     wireshark
     zathura
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
     kdePackages.gwenview
     qt6.qtwayland
     brightnessctl
     bibata-cursors
+    libreoffice
     curl
     gcc
     gnumake
     pkg-config
     tree-sitter
     fzf
+    swaybg
+    hyprsunset
+    libnotify
+    grim 
+    slurp
+    htop
+    cava
   ];
 
   # Env vars and dotfiles
 
-  home.sessionPath = [];
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
 
   home.sessionVariables = {
     LANG = "en_US.UTF-8";
@@ -89,9 +99,10 @@ in {
     EDITOR = "nvim"; 
   };
 
-  home.file = {
-    ".gdbinit".source = ./gdbinit;
-  };
+  home.file.".local/bin/" = {
+    source = ./scripts;
+    recursive = true;
+  }; 
 
   xdg.configFile = {
     "starship.toml".source = ./starship;
@@ -197,8 +208,8 @@ in {
       signByDefault = true;
     };
     settings = {
-      user.name = "thestaccato";
-      user.email = "296458454+thestaccato@users.noreply.github.com";
+      user.name = "Yash Sharma";
+      user.email = "296458454+yashsio@users.noreply.github.com";
     };
   }; 
 
@@ -212,4 +223,10 @@ in {
       require("config.lazy")
     '';
   }; 
+
+  programs.hyprlock.enable = true; 
+  
+  # Services
+
+  services.hypridle.enable = true; 
 }

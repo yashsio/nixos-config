@@ -1,14 +1,14 @@
-font=Inter 12
+font=sans-serif 12
 background-color=#1d2021
 text-color=#d4be98
-border-color=#3c3836
-border-size=2
-border-radius=8
+border-color=#a9b665
+border-size=3
+border-radius=5
 padding=10
-margin=2,0,5,10
+margin=10,10,0,0
 
 width=300
-height=100
+height=500 
 layer=overlay
 anchor=top-right
 
@@ -26,6 +26,6 @@ text-color=#d4be98
 
 [urgency=high]
 background-color=#1d2021
-text-color=#ea6962
+text-color=#d4be98
 border-color=#ea6962
 default-timeout=0
