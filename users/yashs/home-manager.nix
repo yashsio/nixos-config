@@ -41,7 +41,7 @@ in {
 
   # Packages
   home.packages = with pkgs; [
-    nur.repos.thestaccato.mozart
+    nur.repos.yashsio.mozart
     papirus-icon-theme
     adwaita-icon-theme
     foot
@@ -67,6 +67,8 @@ in {
     wireshark
     zathura
     kdePackages.gwenview
+    kdePackages.ark
+    marktext
     qt6.qtwayland
     brightnessctl
     bibata-cursors
@@ -84,6 +86,7 @@ in {
     slurp
     htop
     cava
+    hypridle
   ];
 
   # Env vars and dotfiles
@@ -209,24 +212,22 @@ in {
     };
     settings = {
       user.name = "Yash Sharma";
-      user.email = "296458454+yashsio@users.noreply.github.com";
+      user.email = "296458454+thestaccato@users.noreply.github.com";
     };
   }; 
 
   programs.jujutsu = {
-    enable = true;
+    enable = false;
   };
   
   programs.neovim = {
     enable = true;
+    # package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    # withPython3 = true;
     initLua = ''
       require("config.lazy")
     '';
   }; 
 
   programs.hyprlock.enable = true; 
-  
-  # Services
-
-  services.hypridle.enable = true; 
 }

@@ -20,7 +20,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  services.openssh.settings.PasswordAuthentication = true;
+  services.openssh.settings.PasswordAuthentication = false;
   services.openssh.settings.PermitRootLogin = "no";
 
   services.gvfs.enable = true;
