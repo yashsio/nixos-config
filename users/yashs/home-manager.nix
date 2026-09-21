@@ -1,6 +1,6 @@
 { inputs, ... }:
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgsUnstable, ... }:
 
 let
   nixConfigPath = "${config.home.homeDirectory}/nixos-config";
@@ -42,6 +42,7 @@ in {
   # Packages
   home.packages = with pkgs; [
     nur.repos.yashsio.mozart
+    nur.repos.yashsio.krypton-cli
     papirus-icon-theme
     adwaita-icon-theme
     foot
@@ -61,7 +62,6 @@ in {
     mako
     waybar
     fuzzel
-    brave
     librewolf
     ripgrep
     wireshark
@@ -87,6 +87,8 @@ in {
     htop
     cava
     hypridle
+  ] ++ [
+    pkgsUnstable.brave-origin
   ];
 
   # Env vars and dotfiles

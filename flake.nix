@@ -33,6 +33,7 @@
 
     mkSystem = import ./lib/mksystem.nix {
       inherit overlays nixpkgs inputs;
+      nixpkgs-unstable = inputs.nixpkgs-unstable;
     };
   in {
     # NixOS host.
