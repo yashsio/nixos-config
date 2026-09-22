@@ -43,16 +43,40 @@ in {
   home.packages = with pkgs; [
     nur.repos.yashsio.mozart
     nur.repos.yashsio.krypton-cli
+
     papirus-icon-theme
     adwaita-icon-theme
+
+    zip
+    unzip
+
+    rustc
+    cargo
+    rustfmt
+    clippy
+    rust-analyzer
+
+    clang
+    clang-tools
+    cmake
+    gnumake
+    pkg-config
+
+    tree-sitter
+    ripgrep
+    fd
+    fzf
+    jq
+
+    python3
+    uv
+
     foot
     tmux
     imagemagick
     fastfetch
     gimp
     podman-compose
-    zip
-    unzip
     vlc
     cmatrix
     cliphist
@@ -63,8 +87,6 @@ in {
     waybar
     fuzzel
     librewolf
-    ripgrep
-    wireshark
     zathura
     kdePackages.gwenview
     kdePackages.ark
@@ -74,11 +96,6 @@ in {
     bibata-cursors
     libreoffice
     curl
-    gcc
-    gnumake
-    pkg-config
-    tree-sitter
-    fzf
     swaybg
     hyprsunset
     libnotify
@@ -89,6 +106,7 @@ in {
     hypridle
   ] ++ [
     pkgsUnstable.brave-origin
+    pkgsUnstable.zig
   ];
 
   # Env vars and dotfiles
@@ -225,7 +243,6 @@ in {
   programs.neovim = {
     enable = true;
     # package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    # withPython3 = true;
     initLua = ''
       require("config.lazy")
     '';
