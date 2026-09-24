@@ -44,9 +44,6 @@ in {
     nur.repos.yashsio.mozart
     nur.repos.yashsio.krypton-cli
 
-    papirus-icon-theme
-    adwaita-icon-theme
-
     zip
     unzip
 
@@ -70,7 +67,7 @@ in {
 
     python3
     uv
-
+    
     foot
     tmux
     imagemagick
@@ -93,7 +90,6 @@ in {
     marktext
     qt6.qtwayland
     brightnessctl
-    bibata-cursors
     libreoffice
     curl
     swaybg
@@ -127,6 +123,11 @@ in {
     recursive = true;
   }; 
 
+  home.file.".config/kdeglobals".text = ''
+    [Icons]
+    Theme=Papirus
+  ''; 
+
   xdg.configFile = {
     "starship.toml".source = ./starship;
     "hypr".source = ./hypr;
@@ -155,6 +156,34 @@ in {
       "text/x-c++"
       "text/x-python"
     ];
+  };
+  
+
+  home.pointerCursor = {
+    enable = true;
+    name = "Bibata-Original-Ice";
+    package = pkgs.bibata-cursors;
+  };
+
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "Papirus";
+      package = pkgs.papirus-icon-theme; 
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "qtct";
+
+    qt5ctSettings = {
+      Appearance.icon_theme = "Papirus";
+    };
+
+    qt6ctSettings = {
+      Appearance.icon_theme = "Papirus";
+    };
   };
 
   # Programs
@@ -227,12 +256,12 @@ in {
   programs.git = {
     enable = true;
     signing = {
-      key = "E16C803AD20A5A22";
+      key = "FC8FCCEB9A39DA92";
       signByDefault = true;
     };
     settings = {
       user.name = "Yash Sharma";
-      user.email = "296458454+thestaccato@users.noreply.github.com";
+      user.email = "296458454+yashsio@users.noreply.github.com";
     };
   }; 
 
