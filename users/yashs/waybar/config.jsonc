@@ -34,7 +34,7 @@
     } 
   },
   "custom/logo": {
-    "format": " ",
+    "format": " ",
     "on-click": "fuzzel",
     "tooltip-format": "App Menu"
   },

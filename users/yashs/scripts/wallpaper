@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+WALLPAPER_DIR="$HOME/Pictures/wallpapers"
+STATE_FILE="${XDG_STATE_HOME:-$HOME/.local/state}/wallpaper"
+
+mkdir -p "$(dirname "$STATE_FILE")"
+
+mapfile -t wallpapers < <(
+  find "$WALLPAPER_DIR" -maxdepth 1 -type f \
+    \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \
+    -o -iname '*.webp' \) \
+    -printf '%f\n' |
+    sort
+)
+
+if ((${#wallpapers[@]} == 0)); then
+  notify-send "Wallpaper" "No wallpapers found in $WALLPAPER_DIR"
+  exit 1
+fi
+
+selected="$(
+  printf '%s\n' "${wallpapers[@]}" |
+    fuzzel --dmenu --prompt='    '
+)"
+
+[[ -n "$selected" ]] || exit 0
+
+wallpaper="$WALLPAPER_DIR/$selected"
+
+# Stop the currently running wallpaper.
+pkill -x swaybg 2>/dev/null || true
+
+# Start the new wallpaper on all outputs.
+swaybg \
+  --output '*' \
+  --image "$wallpaper" \
+  --mode fill \
+  >/dev/null 2>&1 &
+
+# Save the absolute path for the next login.
+printf '%s\n' "$wallpaper" >"$STATE_FILE"
+
+notify-send "Wallpaper changed" "$selected"

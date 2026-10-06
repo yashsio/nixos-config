@@ -30,7 +30,7 @@ hl.bind(
 
 hl.bind(mod .. " + W", hl.dsp.exec_cmd("active-windows"))
 
-hl.bind(mod .. " + M", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center"))
+hl.bind(mod .. " + M", hl.dsp.exec_cmd("wallpaper"))
 hl.bind(mod .. " + B", hl.dsp.exec_cmd(term .. " -e " .. "bluetooth-menu"))
 hl.bind(mod .. " + N", hl.dsp.exec_cmd(term .. " -e " .. "network-menu"))
 hl.bind(mod .. " + O", hl.dsp.exec_cmd(term .. " -e " .. "power-menu"))

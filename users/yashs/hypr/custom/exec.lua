@@ -1,7 +1,6 @@
 hl.on("hyprland.start", function()
-	hl.exec_cmd(
-		"swaybg -i ~/Pictures/wallpapers/Haus.png -m fill & hypridle & foot --server & mako & waybar & hyprsunset & dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-	)
+	hl.exec_cmd("waybar & foot --server & mako & hyprsunset")
+	hl.exec_cmd('swaybg -m fill -i "$(cat ~/.local/state/wallpaper)"')
 	hl.exec_cmd("wl-paste --type text --watch cliphist store")
 	hl.exec_cmd("wl-paste --type image --watch cliphist store")
 	hl.exec_cmd("dbus-update-activation-environment --systemd --all")

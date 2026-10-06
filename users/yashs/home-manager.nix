@@ -43,6 +43,8 @@ in {
   home.packages = with pkgs; [
     nur.repos.yashsio.mozart
     nur.repos.yashsio.krypton-cli
+    nur.repos.yashsio.aether
+    nur.repos.yashsio.sfm
 
     zip
     unzip
@@ -99,7 +101,8 @@ in {
     slurp
     htop
     cava
-    hypridle
+    kdePackages.dolphin
+    kdePackages.dolphin-plugins
   ] ++ [
     pkgsUnstable.brave-origin
     pkgsUnstable.zig
