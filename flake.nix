@@ -19,6 +19,11 @@
       url = "github:nix-community/neovim-nightly-overlay";
     };
 
+    helium = {
+      url = "github:yashsio/helium-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Other packages
     jujutsu.url = "github:martinvonz/jj";
     zig.url = "github:mitchellh/zig-overlay"; 

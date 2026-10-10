@@ -76,6 +76,26 @@
         "type": "github"
       }
     },
+    "helium": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791628648,
+        "narHash": "sha256-qsc8j8mNKNgUscOBae5/na+VnpWjn8yt5Qv7DKPcmuM=",
+        "owner": "yashsio",
+        "repo": "helium-browser-flake",
+        "rev": "0a5fb500c6b88211a47e743136daea3f389c726f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yashsio",
+        "repo": "helium-browser-flake",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -255,6 +275,7 @@
     },
     "root": {
       "inputs": {
+        "helium": "helium",
         "home-manager": "home-manager",
         "jujutsu": "jujutsu",
         "neovim-nightly-overlay": "neovim-nightly-overlay",

@@ -46,6 +46,8 @@ in {
     nur.repos.yashsio.aether
     nur.repos.yashsio.sfm
 
+    inputs.helium.packages.${system}.default
+
     zip
     unzip
 
