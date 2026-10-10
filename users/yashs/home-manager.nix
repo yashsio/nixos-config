@@ -87,8 +87,6 @@ in {
     fuzzel
     librewolf
     zathura
-    kdePackages.gwenview
-    kdePackages.ark
     marktext
     qt6.qtwayland
     brightnessctl
@@ -101,8 +99,7 @@ in {
     slurp
     htop
     cava
-    kdePackages.dolphin
-    kdePackages.dolphin-plugins
+    yazi
   ] ++ [
     pkgsUnstable.brave-origin
     pkgsUnstable.zig
@@ -170,9 +167,21 @@ in {
 
   gtk = {
     enable = true;
+    colorScheme = "dark";
+
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+
     iconTheme = {
       name = "Papirus";
-      package = pkgs.papirus-icon-theme; 
+      package = pkgs.papirus-icon-theme.override {
+          color = "brown";
+      }; 
     };
   };
 
