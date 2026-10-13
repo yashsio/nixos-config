@@ -276,6 +276,9 @@ in {
     settings = {
       user.name = "Yash Sharma";
       user.email = "296458454+yashsio@users.noreply.github.com";
+      diff.tool = "nvimdiff";
+      difftool.prompt = false;
+      difftool.nvimdiff.cmd = ''nvim -d "$LOCAL" "$REMOTE"'';
     };
   }; 
 
