@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, currentSystemName, ... }:
 
 { config, lib, pkgs, pkgsUnstable, ... }:
 
@@ -46,7 +46,7 @@ in {
     nur.repos.yashsio.aether
     nur.repos.yashsio.sfm
 
-    inputs.helium.packages.${system}.default
+    inputs.helium.packages.${stdenv.hostPlatform.system}.default
 
     zip
     unzip
@@ -74,27 +74,31 @@ in {
     
     foot
     tmux
-    imagemagick
-    fastfetch
+    fastfetch 
+    cliphist
+    wl-clipboard
+    waybar
+    fuzzel
+    librewolf
+    qt6.qtwayland
+    curl
+    swaybg
+  ] ++ [
+    pkgsUnstable.brave-origin
+    pkgsUnstable.zig
+  ] ++ (lib.optionals (currentSystemName == "vm") [
+    opencode
+  ]) ++ (lib.optionals (currentSystemName == "host") [
+    obs-studio
     gimp
     podman-compose
     vlc
     cmatrix
-    cliphist
-    wl-clipboard
     pavucontrol
     playerctl
     mako
-    waybar
-    fuzzel
-    librewolf
-    zathura
-    marktext
-    qt6.qtwayland
     brightnessctl
     libreoffice
-    curl
-    swaybg
     hyprsunset
     libnotify
     grim 
@@ -102,10 +106,10 @@ in {
     htop
     cava
     yazi
-  ] ++ [
-    pkgsUnstable.brave-origin
-    pkgsUnstable.zig
-  ];
+    zathura
+    imagemagick
+    zed-editor
+  ]);
 
   # Env vars and dotfiles
 
@@ -181,9 +185,7 @@ in {
 
     iconTheme = {
       name = "Papirus";
-      package = pkgs.papirus-icon-theme.override {
-          color = "brown";
-      }; 
+      package = pkgs.papirus-icon-theme; 
     };
   };
 
@@ -224,7 +226,7 @@ in {
     config = {
       whitelist = {
         prefix= [
-          "${config.home.homeDirectory}/code"
+          "${config.home.homeDirectory}/Projects"
         ];
 
         exact = ["${config.home.homeDirectory}/.envrc"];

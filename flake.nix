@@ -25,13 +25,13 @@
     };
 
     # Other packages
-    jujutsu.url = "github:martinvonz/jj";
+    #jujutsu.url = "github:martinvonz/jj";
     zig.url = "github:mitchellh/zig-overlay"; 
   };
 
   outputs = { nixpkgs, ... }@inputs: let
     overlays = [
-      inputs.jujutsu.overlays.default
+      #inputs.jujutsu.overlays.default
       inputs.zig.overlays.default
       inputs.nur.overlays.default
     ];

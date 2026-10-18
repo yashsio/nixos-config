@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   services.printing.enable = false;
 
   services.resolved = {
@@ -27,5 +27,5 @@
   services.upower.enable = true;
   services.tumbler.enable = true;
 
-  services.getty.autologinUser = "yashs";
+  services.getty.autologinUser = "yashs"; 
 }  

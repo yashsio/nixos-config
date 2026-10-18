@@ -38,6 +38,7 @@ in nixpkgs.lib.nixosSystem {
 
       home-manager.users.${user} = import userHMConfig {
         inputs = inputs;
+        currentSystemName = name;
       };
     }
  

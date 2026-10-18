@@ -8,7 +8,6 @@
   environment.systemPackages = with pkgs; [
     usbutils
     pciutils
-    river
   ];
 
   programs.nix-ld.enable = true;

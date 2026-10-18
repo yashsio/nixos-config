@@ -1,12 +1,12 @@
 # Configuration shared by both host and VM.
 { config, pkgs, lib, ... }: {
   imports = [
-    #../modules/plasma.nix
     ../modules/env.nix
     ../modules/packages.nix
     ../modules/fonts.nix
     ../modules/packages.nix
     ../modules/settings.nix
+    ../modules/security.nix
     ../modules/locale.nix
     ../modules/networking.nix
     ../modules/services.nix
