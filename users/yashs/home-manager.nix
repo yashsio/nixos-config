@@ -99,7 +99,6 @@ in {
     cava
     zathura
     imagemagick
-    brave-origin
     wlsunset
     keepassxc
   ]);
