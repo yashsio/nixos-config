@@ -2,8 +2,7 @@
   description = "NixOS system configurations";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     nur = {
       url = "github:nix-community/NUR";
@@ -13,32 +12,23 @@
     home-manager = { 
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
- 
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-    };
+    };  
 
-    helium = {
-      url = "github:yashsio/helium-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Other packages
-    #jujutsu.url = "github:martinvonz/jj";
-    zig.url = "github:mitchellh/zig-overlay"; 
   };
 
   outputs = { nixpkgs, ... }@inputs: let
     overlays = [
-      #inputs.jujutsu.overlays.default
-      inputs.zig.overlays.default
       inputs.nur.overlays.default
+      (final: prev: {
+        plutowm = final.callPackage ./pkgs/pluto { };
+      })
+      (final: prev: {
+        pluto-bar = final.callPackage ./pkgs/pluto-bar { };
+      })
     ];
 
     mkSystem = import ./lib/mksystem.nix {
       inherit overlays nixpkgs inputs;
-      nixpkgs-unstable = inputs.nixpkgs-unstable;
     };
   in {
     # NixOS host.

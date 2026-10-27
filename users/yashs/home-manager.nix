@@ -1,6 +1,6 @@
 { inputs, currentSystemName, ... }:
 
-{ config, lib, pkgs, pkgsUnstable, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   nixConfigPath = "${config.home.homeDirectory}/nixos-config";
@@ -22,6 +22,8 @@ let
     jp = "jj git push";
     js = "jj st";
 
+    ff = "fastfetch";
+
     nixos-switch = "sudo nixos-rebuild switch --flake ${nixConfigPath}#host";
     nixos-test = "sudo nixos-rebuild test --flake ${nixConfigPath}#host";
     nixos-boot = "sudo nixos-rebuild boot --flake ${nixConfigPath}#host";
@@ -41,12 +43,8 @@ in {
 
   # Packages
   home.packages = with pkgs; [
-    nur.repos.yashsio.mozart
     nur.repos.yashsio.krypton-cli
     nur.repos.yashsio.aether
-    nur.repos.yashsio.sfm
-
-    inputs.helium.packages.${stdenv.hostPlatform.system}.default
 
     zip
     unzip
@@ -72,43 +70,38 @@ in {
     python3
     uv
     
-    foot
-    tmux
     fastfetch 
+    foot
     cliphist
     wl-clipboard
-    waybar
     fuzzel
-    librewolf
     qt6.qtwayland
     curl
     swaybg
-  ] ++ [
-    pkgsUnstable.brave-origin
-    pkgsUnstable.zig
+    neovim
+    tmux
   ] ++ (lib.optionals (currentSystemName == "vm") [
     opencode
   ]) ++ (lib.optionals (currentSystemName == "host") [
     obs-studio
     gimp
     podman-compose
-    vlc
     cmatrix
     pavucontrol
     playerctl
     mako
     brightnessctl
     libreoffice
-    hyprsunset
     libnotify
     grim 
     slurp
     htop
     cava
-    yazi
     zathura
     imagemagick
-    zed-editor
+    brave-origin
+    wlsunset
+    keepassxc
   ]);
 
   # Env vars and dotfiles
@@ -131,7 +124,7 @@ in {
 
   home.file.".config/kdeglobals".text = ''
     [Icons]
-    Theme=Papirus
+    Theme=Gruvbox-Plus-Dark
   ''; 
 
   xdg.configFile = {
@@ -140,10 +133,13 @@ in {
     "nvim".source = ./nvim;
     "fastfetch/config.jsonc".source = ./fastfetch;
     "foot/foot.ini".source = ./foot;
+    "kitty/kitty.conf".source = ./kitty;
     "fuzzel/fuzzel.ini".source = ./fuzzel;
     "mako/config".source = ./mako;
     "waybar".source = ./waybar;
+    "swaylock/config".source = ./swaylock;
     "tmux/tmux.conf".source = ./tmux;
+    "river/init".source = ./river-init;
     "zathura/zathurarc".source = ./zathurarc;
   };
 
@@ -182,11 +178,13 @@ in {
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = true;
     };
-
+ 
     iconTheme = {
-      name = "Papirus";
-      package = pkgs.papirus-icon-theme; 
-    };
+      name = "Gruvbox-Plus-Dark";
+      package = pkgs.gruvbox-plus-icons.override {
+        folder-color = "pistachio";
+      };
+    }; 
   };
 
   qt = {
@@ -194,11 +192,11 @@ in {
     platformTheme.name = "qtct";
 
     qt5ctSettings = {
-      Appearance.icon_theme = "Papirus";
+      Appearance.icon_theme = "Gruvbox-Plus-Dark";
     };
 
     qt6ctSettings = {
-      Appearance.icon_theme = "Papirus";
+      Appearance.icon_theme = "Gruvbox-Plus-Dark";
     };
   };
 
@@ -226,7 +224,7 @@ in {
     config = {
       whitelist = {
         prefix= [
-          "${config.home.homeDirectory}/Projects"
+          "${config.home.homeDirectory}/code"
         ];
 
         exact = ["${config.home.homeDirectory}/.envrc"];
@@ -239,12 +237,12 @@ in {
     shellAliases = shellAliases;
     interactiveShellInit = ''
       if status is-interactive
-        fastfetch
       end
     '';
     functions = {
       fish_greeting = {
-        body = "";
+        body = '' 
+        '';
       };
       hl = {
         body = ''
@@ -264,7 +262,7 @@ in {
             >/dev/null; or return 1
 
           echo "NixOS configurations are valid."
-        '';
+        ''; 
       };
     }; 
   };
@@ -285,16 +283,52 @@ in {
   }; 
 
   programs.jujutsu = {
-    enable = false;
-  };
-  
-  programs.neovim = {
     enable = true;
-    # package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    initLua = ''
-      require("config.lazy")
-    '';
-  }; 
+  };
 
-  programs.hyprlock.enable = true; 
+  programs.mpv = {
+    enable = true;
+    package = pkgs.mpv.override {
+      scripts = with pkgs.mpvScripts; [
+        uosc
+        sponsorblock
+        thumbfast
+        mpris
+      ];
+    };
+    config = {
+      vo = "gpu-next";
+      gpu-api = "vulkan";
+      hwdec = "auto";
+
+      profile = "high-quality";
+      sub-auto = "fuzzy";
+      slang = "eng,en";
+
+      save-position-on-quit = true;
+      ytdl-format = "bestvideo+bestaudio";
+
+      cache-default = 4000000;
+    };
+    bindings = {
+      WHEEL_UP = "seek 5";
+      WHEEL_DOWN = "seek -5";
+      "Alt+0" = "set window-scale 0.5";
+    };
+  };
+
+  programs.librewolf = {
+    enable = true;
+    settings = {
+      "browser.startup.page" = 3;                        
+      "privacy.clearOnShutdown.history" = false;    
+      "privacy.clearOnShutdown.openWindows" = false;
+      "privacy.clearOnShutdown.sessions" = false;
+
+      "network.trr.mode" = 2;
+      "network.trr.uri" = "https://dns.quad9.net/dns-query";
+    };
+  };  
+
+  programs.swaylock.enable = true; 
 }

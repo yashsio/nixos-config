@@ -1,13 +1,19 @@
 [main]
 
-font=Iosevka Nerd Font:size=18
-font-bold=Iosevka Nerd Font:weight=bold:size=18
+font=DejaVuSansMono:size=14
+font-bold=DejaVuSansMono:weight=bold:size=14
+font-italic=DejaVuSansMono:slant=italic:size=14
+font-bold-italic=DejaVuSansMono:weight=bold:slant=italic:size=14
+
+pad=15x15 center   
 
 [cursor]
 style=beam
 blink=yes
 
 [colors-dark]
+alpha=0.9
+
 foreground=d4be98
 background=1d2021
 

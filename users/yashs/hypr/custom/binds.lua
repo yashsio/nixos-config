@@ -3,7 +3,7 @@ local file = "thunar"
 local web = "librewolf"
 local menu = "fuzzel"
 local bar = "waybar"
-local lock = "hyprlock"
+local lock = "swaylock"
 
 local mod = "SUPER"
 local mod_a = mod .. " + ALT"
@@ -28,14 +28,10 @@ hl.bind(
 	)
 )
 
-hl.bind(mod .. " + W", hl.dsp.exec_cmd("active-windows"))
-
-hl.bind(mod .. " + M", hl.dsp.exec_cmd("wallpaper"))
+hl.bind(mod .. " + W", hl.dsp.exec_cmd("wallpaper"))
 hl.bind(mod .. " + B", hl.dsp.exec_cmd(term .. " -e " .. "bluetooth-menu"))
 hl.bind(mod .. " + N", hl.dsp.exec_cmd(term .. " -e " .. "network-menu"))
 hl.bind(mod .. " + O", hl.dsp.exec_cmd(term .. " -e " .. "power-menu"))
-
-hl.bind(mod .. " + U", hl.dsp.exec_cmd("system-update"))
 
 hl.bind(
 	"CTRL" .. " + SHIFT + " .. "S",
@@ -50,14 +46,11 @@ hl.bind(
 	)
 )
 
-hl.bind("F10", hl.dsp.exec_cmd("pkill hyprsunset || hyprsunset -t 4500"))
-
 hl.bind(mod_s .. " + Backspace", hl.dsp.exec_cmd(lock))
 hl.bind(mod_c .. " + W", hl.dsp.exec_cmd("pkill " .. bar .. " || " .. bar))
 
 hl.bind(mod .. " + RETURN", hl.dsp.exec_cmd(term))
 hl.bind(mod .. " + D", hl.dsp.exec_cmd(menu))
-hl.bind(mod .. " + S", hl.dsp.exec_cmd("noctalia msg settings-toggle"))
 hl.bind(mod .. " + F", hl.dsp.exec_cmd(web))
 hl.bind("ALT" .. " + F", hl.dsp.exec_cmd(web .. " --private-window "))
 hl.bind(mod .. " + E", hl.dsp.exec_cmd(file))
@@ -68,7 +61,18 @@ local fullscreenWindowBind =
 
 hl.bind(mod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mod .. " + P", hl.dsp.window.pseudo())
-hl.bind(mod .. " + J", hl.dsp.layout("togglesplit"))
+
+-- Focus/swap master
+hl.bind(mod .. " + H", hl.dsp.layout("focusmaster"))
+hl.bind(mod .. " + M", hl.dsp.layout("swapwithmaster"))
+
+-- Adjust master size
+hl.bind("SUPER + SHIFT + RIGHT", hl.dsp.layout("mfact +0.05"))
+hl.bind("SUPER + SHIFT + LEFT", hl.dsp.layout("mfact -0.05"))
+
+-- Cycle through windows
+hl.bind(mod .. " + A", hl.dsp.layout("cyclenext"))
+hl.bind(mod .. " + S", hl.dsp.layout("cycleprev"))
 
 -- Move focus with mod + arrow keys
 hl.bind(mod .. " + left", hl.dsp.focus({ direction = "left" }))

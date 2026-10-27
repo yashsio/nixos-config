@@ -9,7 +9,7 @@ return {
     vim.g.gruvbox_material_enable_italic = 1
     vim.g.gruvbox_material_enable_bold = 1
     vim.g.gruvbox_material_cursor = "auto"
-    vim.g.gruvbox_material_transparent_background = 0
+    vim.g.gruvbox_material_transparent_background = 1
     vim.g.gruvbox_material_dim_inactive_windows = 0
     vim.g.gruvbox_material_diagnostic_text_highlight = 1
     vim.g.gruvbox_material_diagnostic_line_highlight = 1

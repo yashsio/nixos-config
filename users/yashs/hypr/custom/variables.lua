@@ -3,18 +3,18 @@ hl.config({
 	general = {
 		gaps_in = 5,
 		gaps_out = 10,
-		border_size = 3,
+		border_size = 1,
 		col = {
 			active_border = "rgb(7c6f64)",
 			inactive_border = "rgb(141617)",
 		},
 		resize_on_border = true,
 		allow_tearing = false,
-		layout = "dwindle",
+		layout = "master",
 	},
 
-	dwindle = {
-		preserve_split = true,
+	master = {
+		mfact = 0.55,
 	},
 
 	misc = {
@@ -23,24 +23,21 @@ hl.config({
 		disable_hyprland_logo = true,
 		disable_splash_rendering = true,
 		font_family = "sans-serif",
-		animate_manual_resizes = true,
+		animate_manual_resizes = false,
 		focus_on_activate = true,
 		middle_click_paste = false,
 	},
 
 	decoration = {
-		rounding = 5,
-		rounding_power = 2,
+		rounding = 0,
+		rounding_power = 0,
 		active_opacity = 1.0,
 		inactive_opacity = 1.0,
 		shadow = {
 			enabled = false,
 		},
 		blur = {
-			enabled = true,
-			size = 3,
-			passes = 1,
-			vibrancy = 0.1696,
+			enabled = false,
 		},
 	},
 
@@ -61,17 +58,6 @@ hl.config({
 		force_zero_scaling = true,
 	},
 
-	-- gesture = {
-	--   direction = "horizontal",
-	--   --action = "workspace"
-	-- },
-	--
-	-- snap = {
-	--   --enabled    = true,
-	--   window_gap = 5,
-	--   --monitor_gap = 5,
-	-- },
-
 	cursor = {
 		inactive_timeout = 5,
 		no_warps = true,
@@ -85,16 +71,6 @@ hl.config({
 	},
 
 	animations = {
-		enabled = true,
+		enabled = false,
 	},
 })
-
-hl.animation({ leaf = "windows", enabled = true, speed = 3, bezier = "default", style = "slide" })
-hl.animation({ leaf = "layers", enabled = true, speed = 1.5, bezier = "default", style = "slide" })
-hl.animation({ leaf = "fadeLayersIn", enabled = true, speed = 3, bezier = "default" })
-hl.animation({ leaf = "workspaces", enabled = true, speed = 3, bezier = "default", style = "slide" })
-
--- permissions
--- hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
--- hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
--- hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")

@@ -1,0 +1,18 @@
+#!/bin/sh
+# Example river init script for pluto.
+#
+# Install as ~/.config/river/init (or $XDG_CONFIG_HOME/river/init) and make it
+# executable.  River runs it on startup and sends SIGTERM to the whole process
+# group when the session ends.
+#
+# There is deliberately no bar here: pluto is just a window manager.  If you
+# want one, start a layer-shell bar (waybar, sfwbar, ...) in this script.
+
+pluto &
+
+# Other session startup goes here, e.g.:
+#   swaybg -i ~/wallpaper.png &
+#   mako &
+#   wl-paste --watch cliphist store &
+
+wait

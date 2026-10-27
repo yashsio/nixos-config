@@ -8,6 +8,9 @@
   environment.systemPackages = with pkgs; [
     usbutils
     pciutils
+    river
+    plutowm
+    pluto-bar
   ];
 
   programs.nix-ld.enable = true;
@@ -38,10 +41,10 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-hyprland
-      xdg-desktop-portal-gtk
-    ];
+    # extraPortals = with pkgs; [
+    #   xdg-desktop-portal-hyprland
+    #   xdg-desktop-portal-gtk
+    # ];
   };
 
   programs.xwayland.enable = true;  

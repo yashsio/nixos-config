@@ -1,5 +1,5 @@
 format = """\
-[╭╴](fg:arrow)\
+[┌─](fg:arrow)\
 $username\
 $os\
 $git_branch\
@@ -23,7 +23,7 @@ $fill $cmd_duration $time\
     $lua\
     $haskell\
 )
-[╰─](fg:arrow)$character\
+[└─](fg:arrow)$character\
 """
 # Add the modules you need
 

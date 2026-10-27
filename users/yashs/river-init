@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# The user dbus session is shared across all login sessions and all ttys
+# Therefore, only tell it about the first wayland session
+if [ "$WAYLAND_DISPLAY" = "wayland-1" ]; then
+  dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP PATH
+  dbus-send --dest=org.freedesktop.DBus /org/freedesktop/Dbus \ 
+  org.freedesktop.Dbus.StartServiceByName \ 
+  systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+fi
+
+# TODO use a service manager
+
+timestamp=$(date +%F-%R)
+pluto >/tmp/pluto-${timestamp}.log 2>&1 &
+
+statusbar | pluto-bar &
+
+foot --server &
+mako &
+swaybg -m fill -i "$(cat ~/.local/state/wallpaper)" &
+wl-paste --type text --watch cliphist store &
+wl-paste --type image --watch cliphist store &
+wlsunset -l 28.65 -L 77.20 &

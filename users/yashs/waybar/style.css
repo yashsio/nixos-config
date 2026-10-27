@@ -58,6 +58,7 @@ tooltip {
 
 #clock {
   margin-left: 8.75px;
+  padding: 0 6px;
 }
 
 #memory.warning,

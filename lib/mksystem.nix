@@ -1,5 +1,5 @@
 # This function creates a NixOS system based on config.
-{ nixpkgs, nixpkgs-unstable, overlays, inputs }:
+{ nixpkgs, overlays, inputs }:
 
 name:
 {
@@ -12,10 +12,6 @@ let
   machineConfig = ../machines/${name}.nix;
   userHMConfig = ../users/${user}/home-manager.nix;
 
-  pkgsUnstable = import nixpkgs-unstable {
-    inherit system;
-    config.allowUnfree = true;
-  };
 in nixpkgs.lib.nixosSystem {
   inherit system;
 
@@ -31,11 +27,7 @@ in nixpkgs.lib.nixosSystem {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.backupFileExtension = "backup";
-
-      home-manager.extraSpecialArgs = {
-        inherit inputs pkgsUnstable;
-      };
-
+ 
       home-manager.users.${user} = import userHMConfig {
         inputs = inputs;
         currentSystemName = name;

@@ -1,5 +1,5 @@
 hl.on("hyprland.start", function()
-	hl.exec_cmd("waybar & foot --server & mako & hyprsunset")
+	hl.exec_cmd("statusbar | pluto-bar & foot --server & mako & wlsunset -l 28.65 -L 77.20")
 	hl.exec_cmd('swaybg -m fill -i "$(cat ~/.local/state/wallpaper)"')
 	hl.exec_cmd("wl-paste --type text --watch cliphist store")
 	hl.exec_cmd("wl-paste --type image --watch cliphist store")
