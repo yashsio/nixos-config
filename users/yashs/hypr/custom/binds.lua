@@ -36,13 +36,13 @@ hl.bind(mod .. " + O", hl.dsp.exec_cmd(term .. " -e " .. "power-menu"))
 hl.bind(
 	"CTRL" .. " + SHIFT + " .. "S",
 	hl.dsp.exec_cmd(
-		[[file="$HOME/Pictures/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"; grim -g "$(slurp)" "$file" && notify-send "Screenshot Captured" "$(basename "$file")"]]
+		[[file="$HOME/Pictures/Screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"; grim -g "$(slurp)" "$file" && notify-send "Screenshot Captured" "$(basename "$file")"]]
 	)
 )
 hl.bind(
 	"PRINT",
 	hl.dsp.exec_cmd(
-		[[file="$HOME/Pictures/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"; grim "$file" && notify-send "Screenshot Captured" "$(basename "$file")"]]
+		[[file="$HOME/Pictures/Screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"; grim "$file" && notify-send "Screenshot Captured" "$(basename "$file")"]]
 	)
 )
 
