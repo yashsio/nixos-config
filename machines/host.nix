@@ -4,7 +4,6 @@
     ./hardware/host.nix
     ./vm-shared.nix
     ../modules/host/audio.nix
-    ../modules/host/bluetooth.nix
     ../modules/host/graphics.nix
     #../modules/host/kubernetes.nix
     ../modules/host/services-host.nix

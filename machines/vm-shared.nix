@@ -11,6 +11,7 @@
     ../modules/networking.nix
     ../modules/services.nix
     ../modules/user.nix
+    ../modules/bluetooth.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
