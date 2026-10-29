@@ -18,17 +18,17 @@
           "format": "┌─────────────── Hardware Information ───────────────┐"
         },
             
-        {
-          "type": "host",
-          "key": "   ",
-          "hostname": true,
-        },
-
         // {
-        //   "type": "chassis",
+        //   "type": "host",
         //   "key": "   ",
-        //   "format": "{1} {2} {3}"
+        //   "hostname": true,
         // },
+
+        {
+          "type": "chassis",
+          "key": "   ",
+          "format": "{1} {2} {3}"
+        },
         
 	      // {
 	      //   "type": "title",
