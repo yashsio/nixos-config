@@ -2,5 +2,5 @@
 This repository contains my NixOS system configurations.
 
 
-![NixOS-Desktop-Preview](./.github/assets/preview.png)
+![NixOS-Desktop-Preview](./.github/assets/ss.png)
 
