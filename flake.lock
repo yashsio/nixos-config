@@ -78,11 +78,39 @@
         "type": "github"
       }
     },
+    "pluto-bar": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793191792,
+        "narHash": "sha256-k7a4sKE3vIbaz6RBiKL5XFcln5mK3SfFcLn9b8ks/RA=",
+        "path": "/home/yashs/pluto-bar",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/yashs/pluto-bar",
+        "type": "path"
+      }
+    },
+    "plutowm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793195783,
+        "narHash": "sha256-9lW5PXM72dtifqUmuAGbbU5OXCYRk5yDDAmJIif8VcU=",
+        "path": "/home/yashs/pluto",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/yashs/pluto",
+        "type": "path"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "nur": "nur"
+        "nur": "nur",
+        "pluto-bar": "pluto-bar",
+        "plutowm": "plutowm"
       }
     }
   },

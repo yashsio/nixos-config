@@ -1,9 +1,9 @@
-{ stdenv, wayland, wayland-scanner, wayland-protocols, cairo, pango, wlr-protocols, fontconfig, pkg-config }:
+{ stdenv, src, wayland, wayland-scanner, wayland-protocols, cairo, pango, wlr-protocols, fontconfig, pkg-config }:
 
 stdenv.mkDerivation {
   pname = "pluto-bar";
   version = "0.1";
-  src = /home/yashs/pluto-bar;
+  inherit src;
 
   nativeBuildInputs = [ 
     wayland-scanner
@@ -17,6 +17,11 @@ stdenv.mkDerivation {
     cairo
     pango
     fontconfig
+  ];
+
+  makeFlags = [
+    "WLR_PROTOCOLS=${wlr-protocols}/share/wlr-protocols"
+    "WAYLAND_PROTOCOLS=${wayland-protocols}/share/wayland-protocols"
   ];
 
   preBuild = ''

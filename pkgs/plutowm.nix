@@ -1,10 +1,9 @@
-{ stdenv, wayland, wayland-scanner, wayland-protocols, libxkbcommon, pkg-config }:
+{ stdenv, src, wayland, wayland-scanner, wayland-protocols, libxkbcommon, pkg-config }:
 
 stdenv.mkDerivation rec {
   pname = "plutowm";
   version = "0.1";
-
-  src = /home/yashs/pluto;
+  inherit src;
 
   nativeBuildInputs = [
     wayland-scanner

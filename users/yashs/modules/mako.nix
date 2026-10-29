@@ -1,0 +1,42 @@
+{ ... }:
+{
+  services.mako = {
+    enable = true;
+
+    settings = {
+      font = "sans-serif 12";
+      background-color = "#1d2021";
+      text-color = "#d4be98";
+      border-color = "#a9b665";
+      border-size = 1;
+      border-radius = 0;
+      padding = 10;
+      margin = "10,10,0,0";
+
+      width = 300;
+      height = 500;
+      layer = "overlay";
+      anchor = "top-right";
+
+      icons = true;
+      max-icon-size = 64;
+      max-visible = 5;
+      sort = "-time";
+      default-timeout = 5000;
+      group-by = "app-name";
+
+      "urgency=low" = {
+        background-color = "#1d2021";
+        text-color = "#d4be98";
+      };
+
+      "urgency=high" = {
+        background-color = "#1d2021";
+        text-color = "#d4be98";
+        border-color = "#ea6962";
+        default-timeout = 0;
+      };
+    };
+  };
+}
+
