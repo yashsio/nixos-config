@@ -1,18 +1,11 @@
-{ config, ... }:
+{ ... }:
 
-let
-  wallpaper = builtins.replaceStrings
-    [ "\n" ]
-    [ "" ]
-    (builtins.readFile "${config.home.homeDirectory}/.local/state/wallpaper");
-in
 {
   programs.swaylock = {
     enable = true;
 
     settings = {
-      image = wallpaper;
-      scaling = "fill";
+      color = "1d2021";
 
       indicator-radius = 52;
       indicator-thickness = 6;
@@ -54,7 +47,7 @@ in
       bs-hl-color = "cc241dff";
       separator-color = "1d2021ff";
 
-      font = "sans-serif";
+      font = "Iosevka Nerd Font";
       font-size = 15;
 
       layout-bg-color = "282828e6";
@@ -66,5 +59,4 @@ in
       daemonize = true;
     };
   };
-}
-
+}   

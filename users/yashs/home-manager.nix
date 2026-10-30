@@ -1,6 +1,7 @@
 { inputs, currentSystemName, ... }:
 
 { lib, pkgs, ... }:
+
 {
   imports =
   [
@@ -24,12 +25,12 @@
     ./modules/xdg.nix
   ] ++ lib.optionals (currentSystemName == "host") [
     ./modules/keepassxc.nix
-    ./modules/kitty.nix
+    #./modules/kitty.nix
     ./modules/libreoffice.nix
     ./modules/mako.nix
     ./modules/mpv.nix
     ./modules/obs-studio.nix
-    #./modules/swaylock.nix
+    ./modules/swaylock.nix
     ./modules/wlsunset.nix
     ./modules/zathura.nix
   ] ++ lib.optionals (currentSystemName == "vm") [

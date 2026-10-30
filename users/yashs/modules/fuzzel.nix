@@ -5,7 +5,9 @@
     enable = true;
     settings = {
       main = {
-        font = "sans-serif:weight=bold:size=14";
+        # font = "sans-serif:weight=bold:size=14";
+        # font = "JetBrainsMono Nerd Font:weight=bold:size=14";
+        font = "Iosevka Nerd Font:weight=bold:size=14";
         line-height = 25;
         fields = "name,generic,comment,categories,filename,keywords";
         terminal = "footclient";
