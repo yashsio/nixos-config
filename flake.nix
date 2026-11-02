@@ -24,6 +24,11 @@
       flake = false;
     };
 
+    sfm = {
+      url = "path:/home/yashs/sfm";
+      flake = false;
+    };
+
   };
 
   outputs = { nixpkgs, ... }@inputs: let
@@ -37,6 +42,11 @@
       (final: prev: {
         pluto-bar = final.callPackage ./pkgs/pluto-bar.nix {
           src = inputs.pluto-bar;
+        };
+      })
+      (final: prev: {
+        sfm = final.callPackage ./pkgs/sfm.nix {
+          src = inputs.sfm;
         };
       })
     ];
