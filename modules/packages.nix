@@ -11,6 +11,7 @@
     river
     plutowm
     pluto-bar
+    sfm
   ];
 
   programs.nix-ld.enable = true;

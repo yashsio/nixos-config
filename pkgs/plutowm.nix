@@ -1,6 +1,13 @@
-{ stdenv, src, wayland, wayland-scanner, wayland-protocols, libxkbcommon, pkg-config }:
+{ stdenv,
+  src,
+  wayland,
+  wayland-scanner,
+  wayland-protocols,
+  libxkbcommon,
+  pkg-config,
+}:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "plutowm";
   version = "0.1";
   inherit src;

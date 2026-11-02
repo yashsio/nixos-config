@@ -110,7 +110,21 @@
         "nixpkgs": "nixpkgs",
         "nur": "nur",
         "pluto-bar": "pluto-bar",
-        "plutowm": "plutowm"
+        "plutowm": "plutowm",
+        "sfm": "sfm"
+      }
+    },
+    "sfm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793636041,
+        "narHash": "sha256-UbJwHWmZ4CFQ7vtegtNko8YKZv1p6mw6tkPhW7uo2DQ=",
+        "path": "/home/yashs/sfm",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/yashs/sfm",
+        "type": "path"
       }
     }
   },

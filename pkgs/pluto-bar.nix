@@ -1,4 +1,14 @@
-{ stdenv, src, wayland, wayland-scanner, wayland-protocols, cairo, pango, wlr-protocols, fontconfig, pkg-config }:
+{ stdenv,
+  src,
+  wayland,
+  wayland-scanner,
+  wayland-protocols,
+  cairo,
+  pango,
+  wlr-protocols,
+  fontconfig,
+  pkg-config,
+}:
 
 stdenv.mkDerivation {
   pname = "pluto-bar";

@@ -4,7 +4,7 @@
   src,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "sfm";
   version = "unstable";
   inherit src;
@@ -17,7 +17,7 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     runHook preInstall
-    install -Dm755 pluto "$out/bin/sfm"
+    install -Dm755 sfm "$out/bin/sfm"
     runHook postInstall
   ''; 
 }
