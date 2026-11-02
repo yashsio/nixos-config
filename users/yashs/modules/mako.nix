@@ -4,7 +4,7 @@
     enable = true;
 
     settings = {
-      font = "sans-serif 12";
+      font = "monospace 12";
       background-color = "#1d2021";
       text-color = "#d4be98";
       border-color = "#a9b665";
@@ -12,6 +12,8 @@
       border-radius = 0;
       padding = 10;
       margin = "10,10,0,0";
+
+      progress-color="#6c782e"; 
 
       width = 300;
       height = 500;

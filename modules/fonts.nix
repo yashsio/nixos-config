@@ -9,8 +9,8 @@
    
     fontconfig.defaultFonts = {
       monospace = [ "Iosevka Nerd Font" ];
-      sansSerif = [ "DejaVu Sans" ];
-      serif     = [ "DejaVu Serif" ];
+      sansSerif = [ "Iosevka Nerd Font" ];
+      serif     = [ "Iosevka Nerd Font" ];
     };
   };     
 }

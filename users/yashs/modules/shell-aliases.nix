@@ -21,14 +21,15 @@ in
   jp = "jj git push";
   js = "jj st";
 
-  ff = "fastfetch";
+  ff = "fastfetch"; 
 
-  nixos-switch = "sudo nixos-rebuild switch --flake ${nixConfigPath}#host";
-  nixos-test = "sudo nixos-rebuild test --flake ${nixConfigPath}#host";
-  nixos-boot = "sudo nixos-rebuild boot --flake ${nixConfigPath}#host";
-  switch-vm = "sudo nixos-rebuild switch --flake ${nixConfigPath}#vm";
-  test-vm = "sudo nixos-rebuild test --flake ${nixConfigPath}#vm";
-  boot-vm = "sudo nixos-rebuild boot --flake ${nixConfigPath}#vm";
+  nrs = "sudo nixos-rebuild switch --flake ${nixConfigPath}";
+  nrt = "sudo nixos-rebuild test --flake ${nixConfigPath}";
+  nrb = "sudo nixos-rebuild boot --flake ${nixConfigPath}";
+  nrd = "sudo nixos-rebuild dry-build --flake ${nixConfigPath}";
+
+  nfc = "nix flake check ${nixConfigPath} --all-systems --no-build";
+
   cleanup = "sudo nix-collect-garbage -d";
 }
 

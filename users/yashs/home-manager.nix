@@ -74,9 +74,9 @@
     curl
     neovim
     swaybg
-  ] ++ (lib.optionals (currentSystemName == "vm") [
+  ] ++ (lib.optionals (currentSystemName == "vm-x64-kvm") [
     opencode
-  ]) ++ (lib.optionals (currentSystemName == "host") [
+  ]) ++ (lib.optionals (currentSystemName == "tuf-laptop-amd") [
     brave-origin
     gimp
     podman-compose

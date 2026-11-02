@@ -46,13 +46,13 @@
     };
   in {
     # NixOS host.
-    nixosConfigurations.host = mkSystem "host" {
+    nixosConfigurations.tuf-laptop-amd = mkSystem "tuf-laptop-amd" {
       system = "x86_64-linux";
       user   = "yashs";
     };
 
     # NixOS VM.
-    nixosConfigurations.vm = mkSystem "vm" {
+    nixosConfigurations.vm-x64-kvm = mkSystem "vm-x64-kvm" {
       system = "x86_64-linux";
       user   = "yashs";
     };

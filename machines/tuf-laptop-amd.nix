@@ -14,5 +14,7 @@
 
   boot.kernelModules = [ "kvm" "kvm_amd" ];
 
-  networking.hostName = "nixos";
+  networking.hostName = "tuf-laptop-amd";
+
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

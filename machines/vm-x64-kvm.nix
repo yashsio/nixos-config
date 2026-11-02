@@ -15,5 +15,5 @@
 
   networking.firewall.enable = true;
 
-  networking.hostName = "nixos-vm";
+  networking.hostName = "vm-x64-kvm";
 }

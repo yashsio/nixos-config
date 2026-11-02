@@ -47,7 +47,7 @@
       bs-hl-color = "cc241dff";
       separator-color = "1d2021ff";
 
-      font = "Iosevka Nerd Font";
+      font = "monospace";
       font-size = 15;
 
       layout-bg-color = "282828e6";

@@ -17,22 +17,7 @@
         body = ''
           start-hyprland $argv
         '';
-      };
-      nixos-check = {
-        body = ''
-          nix flake check "$HOME/nixos-config" --all-systems --no-build; or return 1
-
-          nix eval --raw \
-            "$HOME/nixos-config#nixosConfigurations.host.config.system.build.toplevel.drvPath" \
-            >/dev/null; or return 1
-
-          nix eval --raw \
-            "$HOME/nixos-config#nixosConfigurations.vm.config.system.build.toplevel.drvPath" \
-            >/dev/null; or return 1
-
-          echo "NixOS configurations are valid."
-        ''; 
-      };
+      }; 
     }; 
   };  
 }

@@ -35,9 +35,7 @@ usage() {
 main() {
   local action=$1
   local value=${2:-$DEF_VALUE}
-  local device='@DEFAULT_AUDIO_SINK@'
-  local title='Volume'
-  local notification_id='volume'
+  local device title notification_id
 
   if [[ $action == "up" || $action == "down" ]]; then
     if ! [[ $value =~ ^[1-9][0-9]*$ ]]; then
@@ -48,44 +46,40 @@ main() {
 
   case $action in
   up | down)
+    device='@DEFAULT_AUDIO_SINK@'
+    title='Volume'
+    notification_id='volume'
     local sign
-
-    case $action in
-    up) sign='+' ;;
-    down) sign='-' ;;
-    esac
-
-    wpctl set-volume "$device" "${value}%${sign}"
+    if [[ $action == up ]]; then sign='+'; else sign='-'; fi
+    wpctl set-volume -l 1.0 "$device" "${value}%${sign}" || return 1
     ;;
-
   toggle)
-    wpctl set-mute "$device" toggle
+    device='@DEFAULT_AUDIO_SINK@'
+    title='Volume'
+    notification_id='volume'
+    wpctl set-mute "$device" toggle || return 1
     ;;
-
   mic)
     device='@DEFAULT_AUDIO_SOURCE@'
     title='Microphone'
     notification_id='microphone'
-
-    wpctl set-mute "$device" toggle
+    wpctl set-mute "$device" toggle || return 1
     ;;
-
   *)
     usage >&2
     return 1
     ;;
   esac
 
+  local vol_output
+  vol_output=$(LC_NUMERIC=C wpctl get-volume "$device" 2>/dev/null) || return 1
+
   local volume
-  volume=$(wpctl get-volume "$device" |
-    awk '{printf "%d", $2 * 100}')
+  volume=$(awk '{printf "%d", $2 * 100}' <<<"$vol_output")
 
-  local muted
-  local icon
-
-  if wpctl get-volume "$device" | grep -q '\[MUTED\]'; then
+  local muted icon
+  if [[ $vol_output == *"[MUTED]"* ]]; then
     muted=' [Muted]'
-
     if [[ $device == '@DEFAULT_AUDIO_SOURCE@' ]]; then
       icon='microphone-sensitivity-muted'
     else
@@ -93,7 +87,6 @@ main() {
     fi
   else
     muted=''
-
     if [[ $device == '@DEFAULT_AUDIO_SOURCE@' ]]; then
       icon='microphone-sensitivity-high'
     else
