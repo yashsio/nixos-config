@@ -23,7 +23,7 @@
     ./modules/starship.nix
     ./modules/tmux.nix
     ./modules/xdg.nix
-  ] ++ lib.optionals (currentSystemName == "host") [
+  ] ++ lib.optionals (currentSystemName == "tuf-laptop-amd") [
     ./modules/keepassxc.nix
     #./modules/kitty.nix
     ./modules/libreoffice.nix
@@ -33,7 +33,7 @@
     ./modules/swaylock.nix
     ./modules/wlsunset.nix
     ./modules/zathura.nix
-  ] ++ lib.optionals (currentSystemName == "vm") [
+  ] ++ lib.optionals (currentSystemName == "vm-x64-kvm") [
   ];
 
   home.stateVersion = "26.05";
